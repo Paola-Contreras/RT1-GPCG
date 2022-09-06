@@ -1,8 +1,6 @@
 import struct
 from collections import namedtuple
-from typing import Final
 import math_lib as ml
-
 from math import cos, sin, tan, pi
 from obj import Obj
 

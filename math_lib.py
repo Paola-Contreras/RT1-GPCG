@@ -26,7 +26,3 @@ def subtract(a, b):
 def add (a, b):
     result = [a[i] + b[i] for i in range(min(len(a), len(b)))]
     return result
-
-def power(v,n):
-    result = v * (n*n)
-    return result 

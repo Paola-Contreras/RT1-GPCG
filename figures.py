@@ -27,9 +27,13 @@ class Sphere(object):
     def ray_intersect(self, orig, dir):
         L = ml.subtract(self.center, orig)
         tca = ml.dot(L, dir)
-        #d_norm = ml.normalized(L)
-        #d= ((ml.power(d_norm,2)) - tca ** 2 )**0.5
-        d = ( np.linalg.norm(L) ** 2 - tca ** 2) ** 0.5
+        d = (np.linalg.norm(L) ** 2 - tca ** 2) ** 0.5
+        trye = ml.normalized(L)
+        ff= np.linalg.norm(L)
+        print('L', L )
+        print('norm',np.linalg.norm(L))
+        print('my', trye)
+        
 
 
         if d > self.radius:
@@ -44,7 +48,7 @@ class Sphere(object):
             t0 = t1
         if t0 < 0:
             return None
-            
+
         # P = O + t0 * D
         mul = []
         for j in range(len(dir)):
