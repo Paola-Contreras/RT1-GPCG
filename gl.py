@@ -1,7 +1,7 @@
 import struct
 from collections import namedtuple
+from typing import Final
 import math_lib as ml
-import numpy as np
 
 from math import cos, sin, tan, pi
 from obj import Obj
@@ -114,10 +114,12 @@ class Raytracer(object):
 
         material = intersect.sceneObj.material
 
-        finalColor = [0,0,0]
-        objectColor = [  material.diffuse[0],
+        finalColor = [0.0,0.0,0.0]
+        objectColor =  [  material.diffuse[0],
                          material.diffuse[1],
                          material.diffuse[2]  ]
+
+        objectColor=[float(i) for i in objectColor]
 
         dirLightColor = [0,0,0]
         ambLightColor = [0,0,0]
@@ -126,14 +128,16 @@ class Raytracer(object):
         for light in self.lights:
             if light.lightType == 0: # directional light
                 diffuseColor = [0,0,0]
+                light_dir = [ -light.direction [0],
+                               -light.direction [1],
+                               -light.direction [2]]
 
-                light_dir = np.array(light.direction) * -1
-                intensity = ml.dot(intersect.normal, light_dir)
+                intensity = ml.dot(intersect.normal, light_dir )
                 intensity = float(max(0, intensity))
 
-                diffuseColor = np.array([intensity * light.color[0] * light.intensity,
-                                         intensity * light.color[1] * light.intensity,
-                                         intensity * light.color[2] * light.intensity])
+                diffuseColor = ([intensity * light.color[0] * light.intensity,
+                                 intensity * light.color[1] * light.intensity,
+                                 intensity * light.color[2] * light.intensity])
 
                 #Shadows
                 shadow_intensity = 0
@@ -145,15 +149,23 @@ class Raytracer(object):
                 dirLightColor = ml.add(dirLightColor, diffuseColor * (1 - shadow_intensity))
 
             elif light.lightType == 2: # ambient light
-                ambLightColor = np.array(light.color) * light.intensity
+                 ambLightColor = [light.color[0]*light.intensity, 
+                                  light.color[1]* light.intensity,
+                                  light.color[2]* light.intensity]
+
 
         finalColor = dirLightColor + ambLightColor
 
-        finalColor *= objectColor
+        temp=[]
+        for i in range(len(finalColor)):
+            for j in range(len(objectColor)):
+               mul= finalColor[i]* objectColor[j]
+               temp.append(mul)
+        finalColor = temp
 
-        r = min(1, finalColor[0])
-        g = min(1, finalColor[1])
-        b = min(1, finalColor[2])
+        r = min(1.0, finalColor[0])
+        g = min(1.0, finalColor[1])
+        b = min(1.0, finalColor[2])
 
         return (r,g,b)
 
@@ -173,7 +185,7 @@ class Raytracer(object):
                 Py *= t
 
                 direction = V3(Px, Py, -self.nearPlane)
-                direction = direction / np.linalg.norm(direction)
+                direction =ml.normalized(direction)
 
                 rayColor = self.cast_ray(self.camPosition, direction)
 

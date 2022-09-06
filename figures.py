@@ -44,12 +44,19 @@ class Sphere(object):
             t0 = t1
         if t0 < 0:
             return None
-        
+            
         # P = O + t0 * D
-        P = ml.add(orig, t0 * dir)
+        mul = []
+        for j in range(len(dir)):
+            res = t0 * dir[j]
+            mul.append(res)
+        
+
+        P = ml.add(orig, mul)
         normal = ml.subtract(P, self.center)
         normal = ml.normalized(normal)
 
+      
         return Intersect(distance = t0,
                          point = P,
                          normal = normal,
