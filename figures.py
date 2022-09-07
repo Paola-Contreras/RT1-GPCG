@@ -1,4 +1,3 @@
-import numpy as np
 import math_lib as ml 
 
 WHITE = (1,1,1)
@@ -27,14 +26,11 @@ class Sphere(object):
     def ray_intersect(self, orig, dir):
         L = ml.subtract(self.center, orig)
         tca = ml.dot(L, dir)
-        d = (np.linalg.norm(L) ** 2 - tca ** 2) ** 0.5
-        trye = ml.normalized(L)
-        ff= np.linalg.norm(L)
-        print('L', L )
-        print('norm',np.linalg.norm(L))
-        print('my', trye)
         
+        #Magnitud de un vector 
+        Sum= (L[0] **2 + L[1]**2 + L[2]**2)**0.5
 
+        d = (Sum ** 2 - tca ** 2) ** 0.5
 
         if d > self.radius:
             return None

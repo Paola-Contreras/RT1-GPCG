@@ -21,24 +21,24 @@ rtx.lights.append( DirectionalLight(direction = (-1,-1,-1) ))
 
 #Body of the snowman
 rtx.scene.append( Sphere(V3(0,-3,-10), 2, white) )
-# rtx.scene.append( Sphere(V3(0,0,-10), 1.5, white) )
-# rtx.scene.append( Sphere(V3(0,2.3,-10), 1, white) )
+rtx.scene.append( Sphere(V3(0,0,-10), 1.5, white) )
+rtx.scene.append( Sphere(V3(0,2.3,-10), 1, white) )
 
 # #Buttons 
-# rtx.scene.append( Sphere(V3(0,-1.5,-6), 0.30, black) )
-# rtx.scene.append( Sphere(V3(0,-0.6,-6), 0.25, black) )
-# rtx.scene.append( Sphere(V3(0,0.2,-6), 0.20, black) )
+rtx.scene.append( Sphere(V3(0,-1.5,-6), 0.30, black) )
+rtx.scene.append( Sphere(V3(0,-0.6,-6), 0.25, black) )
+rtx.scene.append( Sphere(V3(0,0.2,-6), 0.20, black) )
 
 # #Face
-# rtx.scene.append( Sphere(V3(0,1.7,-7), 0.1, orange) )
-# rtx.scene.append( Sphere(V3(0,1.4,-7), 0.08, black) )
-# rtx.scene.append( Sphere(V3(0.2,1.43,-7), 0.08, black) )
-# rtx.scene.append( Sphere(V3(-0.2,1.43,-7), 0.08, black) )
-# rtx.scene.append( Sphere(V3(-0.2,1.9,-7), 0.11, black) )
-# rtx.scene.append( Sphere(V3(0.2,1.9,-7), 0.11, black) )
-# rtx.scene.append( Sphere(V3(0.16,1.35,-5), 0.02, white) )
-# rtx.scene.append( Sphere(V3(-0.16,1.35,-5), 0.02, white) )
+rtx.scene.append( Sphere(V3(0,1.7,-7), 0.1, orange) )
+rtx.scene.append( Sphere(V3(0,1.4,-7), 0.08, black) )
+rtx.scene.append( Sphere(V3(0.2,1.43,-7), 0.08, black) )
+rtx.scene.append( Sphere(V3(-0.2,1.43,-7), 0.08, black) )
+rtx.scene.append( Sphere(V3(-0.2,1.9,-7), 0.11, black) )
+rtx.scene.append( Sphere(V3(0.2,1.9,-7), 0.11, black) )
+rtx.scene.append( Sphere(V3(0.16,1.35,-5), 0.02, white) )
+rtx.scene.append( Sphere(V3(-0.16,1.35,-5), 0.02, white) )
 
 rtx.glRender()
 
-rtx.glFinish("output00.bmp")
+rtx.glFinish("output.bmp")
